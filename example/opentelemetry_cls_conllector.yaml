@@ -1,0 +1,27 @@
+receivers:
+  nop:
+
+processors:
+  nop:
+
+exporters:
+  tencentcloud_logservice:
+      # LogService's Endpoint, https://cloud.tencent.com/document/product/614/18940
+      # for TencentCloud Kubernetes(or CVM), set ap-{region-id}.cls.tencentyun.com, eg ap-beijing.cls.tencentyun.com;
+      # others set ap-{region-id}.cls.tencentcs.com, eg ap-beijing.cls.tencentcs.com
+    endpoint: "ap-beijing.cls.tencentcs.com"
+    # LogService's LogSet ID
+    logset: "demo-logset"
+    # LogService's Topic ID
+    topic: "demo-topic"
+    # TencentCloud secret id
+    secret_id: "demo-secret-id"
+    # TencentCloud secret key
+    secret_key: "demo-secret-key"
+
+service:
+  pipelines:
+    logs:
+      receivers: [nop]
+      processors: [nop]
+      exporters: [tencentcloud_logservice]
